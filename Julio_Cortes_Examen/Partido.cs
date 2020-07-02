@@ -22,28 +22,31 @@ namespace Julio_Cortes_Examen
             this.Equipos = equipos;
             foreach (Equipo equipo in equipos)
             {
-                equipo.Entrenador.JugadorCambiado += this.JugadorCambiado;
+                equipo.Entrenador.JugadorCambiado += this.OnJugadorCambiado;
                 personas.Add(equipo.Entrenador);
                 personas.Add(equipo.Medico);
                 personas.AddRange(equipo.Jugadores);
             }
         }
 
-        public Equipo EquipoGanador { get => equipoGanador; }
-        public Equipo EquipoPerdedor { get => equipoPerdedor;}
-        public bool Empate { get => empate; }
+
         public TimeSpan Duration { get => duration; set => duration = value; }
         public Equipo[] Equipos { get => equipos; set => equipos = value; }
+        public Equipo EquipoGanador { get => equipoGanador; set => equipoGanador = value; }
+        public bool Empate { get => empate; set => empate = value; }
+        public Equipo EquipoPerdedor { get => equipoPerdedor; set => equipoPerdedor = value; }
 
         public bool validMatch()//si los equipos no son del mismo tipo (nacional o de liga) retorna false
         {
+            string equipos = Equipos[1].nationalTeam().ToString();
             return (Equipos[0].nationalTeam() == Equipos[1].nationalTeam());
+           
         }
         public void mostrarParticipantes()//Metodo creado para demostrar polimorfismo
         {
             foreach (Persona persona in personas)
             {
-                persona.Show();
+                Console.WriteLine( persona.Show());
             }
         }
         public string MatchType()
@@ -63,9 +66,9 @@ namespace Julio_Cortes_Examen
         }
         public string Winner()
         {
-            if (!empate)
+            if (!Empate)
             {
-                return $"El equipo ganador es: {equipoGanador.Name}";
+                return $"El equipo ganador es: {EquipoGanador.Name}";
             }
             else
             {
@@ -75,9 +78,9 @@ namespace Julio_Cortes_Examen
         }
         public string Loser()
         {
-            if (!empate)
+            if (!Empate)
             {
-                return $"El equipo perdedor es: {equipoPerdedor.Name}";
+                return $"El equipo perdedor es: {EquipoPerdedor.Name}";
             }
             else
             {
@@ -88,7 +91,7 @@ namespace Julio_Cortes_Examen
         {
             return $"Hubo un empate entre los equipos: {Equipos[0].Name} y {Equipos[1].Name}";
         }
-        public void JugadorCambiado(object source,EventArgs e)
+        public void OnJugadorCambiado(object source,EventArgs e)
         {
             Console.WriteLine("Cambio de jugador Realizado...");
         }

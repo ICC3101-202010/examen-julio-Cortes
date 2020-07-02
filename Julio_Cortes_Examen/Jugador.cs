@@ -23,14 +23,17 @@ namespace Julio_Cortes_Examen
             this.Nofshirt = nofshirt;
             this.healthy = true;
         }
-
+        public void lesion()
+        {
+            OnJugadorLesionado();
+        }
         protected virtual void OnJugadorLesionado()
         {
             if (JugadorLesionado!=null)
             {
-                this.healthy = false; ;
-                JugadorLesionado(this, EventArgs.Empty);
+                this.healthy = false;
                 Console.WriteLine("Profe! cambio porfa");
+                JugadorLesionado(this, EventArgs.Empty);
             }
         }
         public override string Show()

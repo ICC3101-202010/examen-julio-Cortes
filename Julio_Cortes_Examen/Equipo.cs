@@ -23,7 +23,7 @@ namespace Julio_Cortes_Examen
             this.national = this.nationalTeam();
             foreach (Jugador jugador in jugadores)
             {
-                jugador.JugadorLesionado += entrenador.OnJugadorCambiado;     
+                jugador.JugadorLesionado += entrenador.OnJugadorLesionado;     
             }
         }
 
@@ -32,11 +32,35 @@ namespace Julio_Cortes_Examen
         public Medico Medico { get => medico; set => medico = value; }
         public string Name { get => name; set => name = value; }
         public bool National { get => national; set => national = value; }
+        public string show()
+        {
+            string returnable = "";
+            if (national)
+            {
+                returnable = $"Name: {name}\nType :National\n";
+            }
+            else
+            {
+                returnable = $"Name: {name}\nType :National\n";
+            }
+            foreach (Jugador jugador in jugadores)
+            {
+                returnable += jugador.Show();
+            }
 
+            return returnable;
+        }
         public bool nationalTeam() //retorna true si todos los jugadores tienen la misma nacionalidad
         {
             string nationality = this.jugadores[0].Nation;
-            return !(jugadores.Any(u => u.Nation.ToLower() != nationality.ToLower()));
+            foreach (Jugador jugador in jugadores)
+            {
+                if (nationality.ToLower()!=jugador.Nation.ToLower())
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

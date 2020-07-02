@@ -15,13 +15,27 @@ namespace Julio_Cortes_Examen
         }
 
         public int Xppoints { get => xppoints; set => xppoints = value; }
-        public bool Evaluar(Jugador jugador)
+        public bool Evaluar(Jugador jugador)//retorna false si el jugador esta sano
         {
-            return true;
+            if (jugador.Healthy)
+            {
+                Console.WriteLine($"El jugador {jugador.Name} se encuentra sano.");
+            }
+            else
+            {
+                Console.WriteLine($"El jugador {jugador.Name} se encuentra lesionado.");
+            }
+            
+            return !(jugador.Healthy);
+        }
+        public override string Show()
+        {
+            return base.Show()+$"\nPuntos de experiencia: {xppoints.ToString()}";
         }
         public void Curar(Jugador jugador)
         {
-
+            jugador.Healthy = true;
+            Console.WriteLine($"El jugador {jugador.Name} ha sido sanado." );
         }
     }
 }

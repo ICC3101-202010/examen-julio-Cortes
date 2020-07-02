@@ -13,8 +13,7 @@ namespace Julio_Cortes_Examen
         private Medico medico;
         private string name;
         private bool national;
-
-
+      
         public Equipo(Jugador[] jugadores, Entrenador entrenador, Medico medico, string name)
         {
             this.jugadores = jugadores;

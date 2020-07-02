@@ -20,7 +20,7 @@ namespace Julio_Cortes_Examen
             this.nation = nation;
             this.salary = salary;
         }
-        public string Show()
+        public virtual string Show()
         {
             return $"Nombre: {name}\nEdad: {age.ToString()}\nNacionalidad: {nation}\nSalary: {salary.ToString()}";
         }

@@ -25,6 +25,10 @@ namespace Julio_Cortes_Examen
                 Console.WriteLine("Solicito cambio de jugador");
             }
         }
+        public override string Show()
+        {
+            return base.Show()+$"\nPuntos tacticos: {tacticpoints.ToString()}";
+        }
 
     }
 }

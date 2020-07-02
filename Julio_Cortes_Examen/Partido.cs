@@ -13,6 +13,7 @@ namespace Julio_Cortes_Examen
         private Equipo[] equipos = new Equipo[2];
         private Equipo equipoGanador;
         private Equipo equipoPerdedor;
+        private List<Persona> personas = new List<Persona>();
         private bool empate;
 
         public Partido(TimeSpan duration, Equipo[] equipos)
@@ -22,6 +23,9 @@ namespace Julio_Cortes_Examen
             foreach (Equipo equipo in equipos)
             {
                 equipo.Entrenador.JugadorCambiado += this.JugadorCambiado;
+                personas.Add(equipo.Entrenador);
+                personas.Add(equipo.Medico);
+                personas.AddRange(equipo.Jugadores);
             }
         }
 
@@ -34,6 +38,13 @@ namespace Julio_Cortes_Examen
         public bool validMatch()//si los equipos no son del mismo tipo (nacional o de liga) retorna false
         {
             return (Equipos[0].nationalTeam() == Equipos[1].nationalTeam());
+        }
+        public void mostrarParticipantes()//Metodo creado para demostrar polimorfismo
+        {
+            foreach (Persona persona in personas)
+            {
+                persona.Show();
+            }
         }
         public string MatchType()
         {
@@ -79,7 +90,7 @@ namespace Julio_Cortes_Examen
         }
         public void JugadorCambiado(object source,EventArgs e)
         {
-            Console.WriteLine("Cambio de jugadorrRealizado...");
+            Console.WriteLine("Cambio de jugador Realizado...");
         }
         public void simularPartido()
         { }

@@ -11,6 +11,7 @@ namespace Julio_Cortes_Examen
         private int atackpoints;
         private int defensepoints;
         private int nofshirt;
+        private bool healthy;
         public delegate void LesionJugadorEventHandler(object source, EventArgs e);
         public event LesionJugadorEventHandler JugadorLesionado;
 
@@ -20,18 +21,26 @@ namespace Julio_Cortes_Examen
             this.Atackpoints = atackpoints;
             this.Defensepoints = defensepoints;
             this.Nofshirt = nofshirt;
+            this.healthy = true;
         }
+
         protected virtual void OnJugadorLesionado()
         {
             if (JugadorLesionado!=null)
             {
+                this.healthy = false; ;
                 JugadorLesionado(this, EventArgs.Empty);
                 Console.WriteLine("Profe! cambio porfa");
             }
+        }
+        public override string Show()
+        {
+            return base.Show()+$"\nPuntos de ataque: {atackpoints.ToString()}\nPuntos de defensa: {defensepoints.ToString()}\nNumero de polera: {nofshirt.ToString()}";
         }
 
         public int Atackpoints { get => atackpoints; set => atackpoints = value; }
         public int Defensepoints { get => defensepoints; set => defensepoints = value; }
         public int Nofshirt { get => nofshirt; set => nofshirt = value; }
+        public bool Healthy { get => healthy; set => healthy = value; }
     }
 }

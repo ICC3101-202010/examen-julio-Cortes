@@ -10,6 +10,23 @@ namespace Julio_Cortes_Examen
     {
         static void Main(string[] args)
         {
+            /*bool checker = false;//Uso de excepciones para convertir a enteros, para strings sirve el metodo string.nullorempty
+            while (!checker)
+            {
+                try
+                {
+                    int num = int.Parse(Console.ReadLine());
+                    if (num<=0)
+                    {
+                        throw new FormatException();
+                    }
+                    checker = true;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Wrong Format");
+                }
+            }*/
             List<Equipo> equipos = new List<Equipo>();
             List<Jugador> jugadores = new List<Jugador>();
 
